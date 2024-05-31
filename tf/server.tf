@@ -45,3 +45,9 @@ resource "hcloud_server" "main" {
     }
   )
 }
+
+output "server-ip" {
+  description = "IPv4 of server"
+  value       = hcloud_server.main.ipv4_address
+}
+
