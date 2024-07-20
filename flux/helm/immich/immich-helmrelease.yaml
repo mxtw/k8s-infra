@@ -41,6 +41,8 @@ spec:
               - immich.macks.cloud
               secretName: immich-tls
     machine-learning:
+      # disable for now
+      enabled: false
       persistence:
         cache:
           enabled: true
