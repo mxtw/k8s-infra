@@ -8,18 +8,12 @@ terraform {
       source  = "registry.terraform.io/hashicorp/random"
       version = "~> 3.6"
     }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "~> 3.0"
+    }
   }
   required_version = "~> 1.7"
-}
-
-variable "hcloud_token" {
-  type = string
-  sensitive = true
-}
-
-variable "node_count" {
-  type = number
-  default = 0
 }
 
 resource "random_string" "k3s_token" {
