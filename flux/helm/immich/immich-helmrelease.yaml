@@ -33,10 +33,10 @@ spec:
           annotations:
             cert-manager.io/cluster-issuer: letsencrypt-prod
           hosts:
-            - host: immich-new.macks.cloud
+            - host: immich.macks.cloud
               paths:
                 - path: /
           tls:
             - hosts:
-              - immich-new.macks.cloud
+              - immich.macks.cloud
               secretName: immich-tls
