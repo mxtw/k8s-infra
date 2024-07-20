@@ -40,3 +40,11 @@ spec:
             - hosts:
               - immich.macks.cloud
               secretName: immich-tls
+    machine-learning:
+      persistence:
+        cache:
+          enabled: true
+          # Optional: Set this to pvc to avoid downloading the ML models every start.
+          type: pvc
+          accessMode: ReadWriteOnce
+          storageClass: longhorn
