@@ -27,7 +27,7 @@ provider "hcloud" {
 
 resource "hcloud_server" "control_plane" {
   name        = "k3s-control-plane-1"
-  server_type = "cx22"
+  server_type = "cx32"
   image       = "ubuntu-24.04"
   location    = "fsn1"
   ssh_keys    = ["main"]
