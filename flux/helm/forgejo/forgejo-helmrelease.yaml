@@ -21,6 +21,8 @@ spec:
     gitea:
       config:
         APP_NAME: git.macks.cloud
+        service:
+          DISABLE_REGISTRATION: true
         database:
           DB_TYPE: postgres
         indexer:
