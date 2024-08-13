@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: forgejo-ssh-ingress
+  namespace: forgejo  # Use the appropriate namespace
+spec:
+  entryPoints:
+    - ssh  # The entry point defined in Traefik for SSH
+  routes:
+    - match: HostSNI(`*`)  # Match all SSH traffic
+      services:
+        - name: forgejo-forgejo-ssh  # The name of the Kubernetes Service
+          port: 22  # Port on which the service is listening
