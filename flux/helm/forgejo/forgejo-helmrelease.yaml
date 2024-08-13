@@ -19,6 +19,8 @@ spec:
   targetNamespace: forgejo
   values:
     gitea:
+      admin:
+        existingSecret: gitea-admin-secret
       config:
         APP_NAME: git.macks.cloud
         service:
