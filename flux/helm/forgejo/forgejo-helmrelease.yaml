@@ -22,7 +22,9 @@ spec:
       admin:
         existingSecret: gitea-admin-secret
       config:
-        APP_NAME: git.macks.cloud
+        APP_NAME: git
+        server:
+          SSH_PORT: 2222
         service:
           DISABLE_REGISTRATION: true
         database:
