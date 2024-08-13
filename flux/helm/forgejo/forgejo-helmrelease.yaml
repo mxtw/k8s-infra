@@ -30,6 +30,9 @@ spec:
         indexer:
           ISSUE_INDEXER_TYPE: bleve
           REPO_INDEXER_ENABLED: true
+        repository:
+          ENABLE_PUSH_CREATE_USER: true
+          ENABLE_PUSH_CREATE_ORG: true
 
     ingress:
       enabled: true
