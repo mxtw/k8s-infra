@@ -27,6 +27,20 @@ spec:
           ISSUE_INDEXER_TYPE: bleve
           REPO_INDEXER_ENABLED: true
 
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      hosts:
+        - host: git.macks.cloud
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - git.macks.cloud
+          secretName: forgejo-tls
+
     postgresql:
       enabled: true
     postgresql-ha:
