@@ -1,6 +1,6 @@
 resources:
-  - namespace.yaml
-  - pvc.yaml
-  - deployment.yaml
-  - service.yaml
-  - ingress.yaml
+  - freshrss-namespace.yaml
+  - freshrss-pvc.yaml
+  - freshrss-deployment.yaml
+  - freshrss-service.yaml
+  - freshrss-ingress.yaml
