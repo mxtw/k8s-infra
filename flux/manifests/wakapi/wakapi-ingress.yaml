@@ -18,6 +18,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: wakapi
+            name: wakapi-svc
             port:
               number: 3000
