@@ -17,6 +17,8 @@ spec:
     spec:
       containers:
       - name: headscale
+        args:
+          - serve
         image: headscale/headscale:stable
         imagePullPolicy: IfNotPresent
         resources:
