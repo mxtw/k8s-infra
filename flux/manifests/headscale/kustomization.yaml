@@ -1,0 +1,11 @@
+configMapGenerator:
+  - name: headscale-configmap
+    files:
+      - configs/config.yaml
+
+resources:
+  - headscale-namespace.yaml
+  - headscale-pvc.yaml
+  - headscale-deployment.yaml
+  - headscale-service.yaml
+  - headscale-ingress.yaml

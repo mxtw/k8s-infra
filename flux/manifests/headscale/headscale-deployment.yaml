@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: headscale
+  namespace: headscale
+  labels:
+    app: headscale
+spec:
+  selector:
+    matchLabels:
+      app: headscale
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: headscale
+    spec:
+      containers:
+      - name: headscale
+        image: headscale/headscale:stable
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 8080
+          name: headscale
+        volumeMounts:
+          - name: headscale-data
+            mountPath: /var/lib/headscale
+          - name: headscale-config
+            mountPath: /etc/headscale
+      volumes:
+        - name: headscale-data
+          persistentVolumeClaim:
+            claimName: headscale-data-pvc
+        - name: headscale-config
+          configMap:
+            name: headscale-configmap
+      restartPolicy: Always
