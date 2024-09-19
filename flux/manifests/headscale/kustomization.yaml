@@ -1,5 +1,6 @@
 configMapGenerator:
   - name: headscale-configmap
+    namespace: headscale
     files:
       - configs/config.yaml
 
