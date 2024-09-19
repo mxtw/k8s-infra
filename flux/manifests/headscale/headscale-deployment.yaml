@@ -37,7 +37,7 @@ spec:
       volumes:
         - name: headscale-data
           persistentVolumeClaim:
-            claimName: headscale-data-pvc
+            claimName: headscale-pvc
         - name: headscale-config
           configMap:
             name: headscale-configmap
