@@ -20,4 +20,4 @@ spec:
           service:
             name: pastebin-svc
             port:
-              number: 3000
+              number: 8000
