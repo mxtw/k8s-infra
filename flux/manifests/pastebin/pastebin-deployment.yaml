@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pastebin
+  namespace: pastebin
+  labels:
+    app: pastebin
+spec:
+  selector:
+    matchLabels:
+      app: pastebin
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container:  pastebin
+      labels:
+        app: pastebin
+    spec:
+      containers:
+      - name: pastebin
+        image: wantguns/bin:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: BIN_PORT
+          value: "8000"
+        - name: BIN_CLIENT_DESC
+          value: "paste things :)"
+        ports:
+        - containerPort: 8000
+          name: pastebin
+        volumeMounts:
+        - name: upload
+          mountPath: /upload
+      volumes:
+        - name: upload
+          persistentVolumeClaim:
+            claimName: pastebin-upload-pvc
+      restartPolicy: Always
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000

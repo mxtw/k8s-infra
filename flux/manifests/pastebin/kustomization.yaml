@@ -1,0 +1,6 @@
+resources:
+  - pastebin-namespace.yaml
+  - pastebin-pvc.yaml
+  - pastebin-deployment.yaml
+  - pastebin-service.yaml
+  - pastebin-ingress.yaml
