@@ -1,0 +1,6 @@
+resources:
+  - linkding-namespace.yaml
+  - linkding-pvc.yaml
+  - linkding-deployment.yaml
+  - linkding-service.yaml
+  - linkding-ingress.yaml
