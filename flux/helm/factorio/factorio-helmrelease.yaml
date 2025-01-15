@@ -1,0 +1,34 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: factorio
+  namespace: flux-system
+spec:
+  releaseName: factorio
+  chart:
+    spec:
+      chart: factorio-server-charts
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: factorio
+      version: 2.5.x
+  install:
+    createNamespace: true
+  interval: 1m0s
+  targetNamespace: factorio
+  values:
+    image:
+      tag: stable
+    factorioServer:
+      name: "factorio dings"
+    persistence:
+      enabled: true
+      storageClassName: "longhorn"
+
+  valuesFrom:
+    - kind: Secret
+      name: factorio-password
+      valuesKey: password
+      targetPath: serverPassword.game_password
