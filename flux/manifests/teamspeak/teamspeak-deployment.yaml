@@ -27,10 +27,6 @@ spec:
         image: teamspeak:latest
         imagePullPolicy: IfNotPresent
         env:
-        - name: TS3SERVER_DB_PLUGIN
-          value: "ts3db_sqlite3"
-        - name: TS3SERVER_DB_SQLCREATEPATH
-          value: "create_sqlite3"
         - name: TS3SERVER_LICENSE
           value: "accept"
         ports:
