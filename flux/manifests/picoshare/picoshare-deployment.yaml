@@ -24,14 +24,14 @@ spec:
     spec:
       containers:
       - name: picoshare
-        image: mtlync/picoshare:latest
+        image: mtlynch/picoshare:latest
         imagePullPolicy: IfNotPresent
         env:
         - name: PS_SHARED_SECRET
           valueFrom:
             secretKeyRef:
               name: picoshare-secret
-              value: password
+              key: password
         ports:
         - containerPort: 4001
           name: picoshare
