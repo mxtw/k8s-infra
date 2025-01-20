@@ -17,3 +17,8 @@ spec:
     createNamespace: true
   interval: 1m0s
   targetNamespace: longhorn
+  values:
+    defaultSettings:
+      replicaSoftAntiAffinity: true
+    persistence:
+      defaultClassReplicaCount: 1
