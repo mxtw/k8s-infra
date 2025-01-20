@@ -45,7 +45,7 @@ spec:
           protocol: TCP
         volumeMounts:
         - name: data
-          mountPath: /data
+          mountPath: /var/ts3server
       volumes:
         - name: data
           persistentVolumeClaim:
