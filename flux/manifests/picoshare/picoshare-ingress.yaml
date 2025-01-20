@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: picoshare-ingress
+  namespace: picoshare
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+  - hosts:
+      - files.macks.cloud
+    secretName: picoshare-tls
+  rules:
+  - host: files.macks.cloud
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: picoshare
+            port:
+              number: 4001

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: picoshare
+  namespace: picoshare
+  labels:
+    app: picoshare
+spec:
+  selector:
+    matchLabels:
+      app: picoshare
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container:  picoshare
+      labels:
+        app: picoshare
+    spec:
+      containers:
+      - name: picoshare
+        image: mtlync/picoshare:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: PS_SHARED_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: picoshare-secret
+              value: password
+        ports:
+        - containerPort: 4001
+          name: picoshare
+        volumeMounts:
+        - name: data
+          mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: picoshare-data-pvc
+      restartPolicy: Always
