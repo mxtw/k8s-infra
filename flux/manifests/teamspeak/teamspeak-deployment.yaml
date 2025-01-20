@@ -51,7 +51,3 @@ spec:
           persistentVolumeClaim:
             claimName: teamspeak-data-pvc
       restartPolicy: Always
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
