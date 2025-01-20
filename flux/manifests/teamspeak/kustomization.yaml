@@ -1,0 +1,5 @@
+resources:
+  - teamspeak-namespace.yaml
+  - teamspeak-pvc.yaml
+  - teamspeak-deployment.yaml
+  - teamspeak-service.yaml
