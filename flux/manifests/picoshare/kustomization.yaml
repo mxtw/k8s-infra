@@ -4,3 +4,4 @@ resources:
   - picoshare-ingress.yaml
   - picoshare-deployment.yaml
   - picoshare-service.yaml
+  - picoshare-secret.yaml
