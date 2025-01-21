@@ -1,6 +1,0 @@
-resources:
-  - wakapi-namespace.yaml
-  - wakapi-pvc.yaml
-  - wakapi-deployment.yaml
-  - wakapi-service.yaml
-  - wakapi-ingress.yaml
