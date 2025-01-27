@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zipline
+  namespace: zipline
+  labels:
+    app: zipline
+spec:
+  selector:
+    matchLabels:
+      app: zipline
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container:  zipline
+      labels:
+        app: zipline
+    spec:
+      containers:
+      - name: zipline
+        image: ghcr.io/diced/zipline:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: CORE_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: zipline-secret
+              key: secret
+        - name: CORE_DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: zipline-secret
+              key: databaseUrl
+        ports:
+        - containerPort: 3000
+          name: zipline
+        volumeMounts:
+        - name: public
+          mountPath: /zipline/public
+        - name: upload
+          mountPath: /zipline/upload
+      volumes:
+        - name: public
+          persistentVolumeClaim:
+            claimName: zipline-public-pvc
+        - name: upload
+          persistentVolumeClaim:
+            claimName: zipline-upload-pvc
+      restartPolicy: Always

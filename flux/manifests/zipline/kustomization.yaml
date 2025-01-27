@@ -1,0 +1,8 @@
+resources:
+  - zipline-namespace.yaml
+  - zipline-secret.yaml
+  - zipline-database.yaml
+  - zipline-deployment.yaml
+  - zipline-ingress.yaml
+  - zipline-pvc.yaml
+  - zipline-service.yaml

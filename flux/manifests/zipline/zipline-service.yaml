@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zipline
+  namespace: zipline
+spec:
+  selector:
+    app: zipline
+  type: ClusterIP
+  ports:
+  - name: zipline
+    protocol: TCP
+    port: 3000
+    targetPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: zipline
+spec:
+  selector:
+    app: postgres
+  type: ClusterIP
+  ports:
+  - name: postgres
+    protocol: TCP
+    port: 5432
+    targetPort: 5432

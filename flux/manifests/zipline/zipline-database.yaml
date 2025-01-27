@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  namespace: zipline
+  labels:
+    app: postgres
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container:  postgres
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:15
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: POSTGRES_USER
+          value: zipline
+        - name: POSTGRES_DATABASE
+          value: zipline
+        - name: POSTGRES_PASSWORD
+          value:
+            secretKeyRef:
+              name: zipline-secret
+              key: postgresPassword
+        ports:
+        - containerPort: 5432
+          name: postgres
+        volumeMounts:
+        - name: database
+          mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: database
+          persistentVolumeClaim:
+            claimName: zipline-database-pvc
+      restartPolicy: Always

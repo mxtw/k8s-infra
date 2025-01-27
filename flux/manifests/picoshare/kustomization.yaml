@@ -1,7 +1,0 @@
-resources:
-  - picoshare-namespace.yaml
-  - picoshare-pvc.yaml
-  - picoshare-ingress.yaml
-  - picoshare-deployment.yaml
-  - picoshare-service.yaml
-  - picoshare-secret.yaml
