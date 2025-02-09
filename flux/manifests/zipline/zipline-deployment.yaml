@@ -43,13 +43,13 @@ spec:
         volumeMounts:
         - name: public
           mountPath: /zipline/public
-        - name: upload
-          mountPath: /zipline/upload
+        - name: uploads
+          mountPath: /zipline/uploads
       volumes:
         - name: public
           persistentVolumeClaim:
             claimName: zipline-public-pvc
-        - name: upload
+        - name: uploads
           persistentVolumeClaim:
             claimName: zipline-upload-pvc
       restartPolicy: Always
