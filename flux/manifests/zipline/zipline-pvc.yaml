@@ -14,6 +14,19 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
+  name: zipline-upload-smb-pvc
+  namespace: zipline
+spec:
+  storageClassName: smb
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
   name: zipline-public-pvc
   namespace: zipline
 spec:

@@ -45,11 +45,16 @@ spec:
           mountPath: /zipline/public
         - name: uploads
           mountPath: /zipline/uploads
+        - name: uploads-old
+          mountPath: /zipline/uploads-old
       volumes:
         - name: public
           persistentVolumeClaim:
             claimName: zipline-public-pvc
         - name: uploads
+          persistentVolumeClaim:
+            claimName: zipline-upload-smb-pvc
+        - name: uploads-old
           persistentVolumeClaim:
             claimName: zipline-upload-pvc
       restartPolicy: Always
