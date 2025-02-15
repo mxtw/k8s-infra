@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: zipline
-        image: ghcr.io/diced/zipline:latest
+        image: ghcr.io/diced/zipline:3.7.13
         imagePullPolicy: IfNotPresent
         env:
         - name: CORE_SECRET
@@ -37,6 +37,8 @@ spec:
             secretKeyRef:
               name: zipline-secret
               key: databaseUrl
+        - name: UPLOADER_ADMIN_LIMIT
+          value: "5gb"
         ports:
         - containerPort: 3000
           name: zipline
