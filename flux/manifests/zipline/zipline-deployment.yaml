@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: zipline
-        image: ghcr.io/diced/zipline:3.7.13
+        image: ghcr.io/diced/zipline:4.0.0
         imagePullPolicy: IfNotPresent
         env:
         - name: CORE_SECRET
@@ -32,7 +32,7 @@ spec:
             secretKeyRef:
               name: zipline-secret
               key: secret
-        - name: CORE_DATABASE_URL
+        - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
               name: zipline-secret
