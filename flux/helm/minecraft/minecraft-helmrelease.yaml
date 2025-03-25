@@ -1,0 +1,56 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: minecraft
+    namespace: flux-system
+spec:
+    releaseName: minecraft
+    chart:
+        spec:
+            chart: minecraft
+            reconcileStrategy: ChartVersion
+            sourceRef:
+                kind: HelmRepository
+                name: itzg
+            version: 4.26.x
+    install:
+        createNamespace: true
+    interval: 1m0s
+    targetNamespace: minecraft
+    values:
+        minecraftServer:
+            eula: "TRUE"
+            type: FTBA
+            ftbModpackId: "86"
+            serviceType: LoadBalancer
+            whitelist: ENC[AES256_GCM,data:R4S1dssX+7d/RVcrsykE6stq,iv:ejcfxOYfvDBKXd2AYh3Vtqnb0CqOw1pQyPqy6acg/Uo=,tag:0Jagc1fGxufP4kQrM2ZmLg==,type:str]
+            ops: ENC[AES256_GCM,data:4wFalwKpC1Jb3YcwKpp4t4lz,iv:L9d+Ymg4bS+Ns8U5teGrQx8uGw12zaYSJpFAedGhr0Q=,tag:wVTB8h2EJGzT9IdqVpyh8g==,type:str]
+            motd: ENC[AES256_GCM,data:VlZRJwUUpWM07X2K,iv:c6eAkHzgvw1Y/ILISK70WtHOnQkMcTGjox+kGTJSdjU=,tag:J+GnberMPruqUKAXQvOwXQ==,type:str]
+        persistence:
+            dataDir:
+                enabled: true
+                Size: 4Gi
+        resources:
+            limits:
+                cpu: 2
+                memory: 4Gi
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1ytk4e44zdvh8e5ylnr4qcg5zmfg0k2t6a2q5xfa7qgnvq6lt6vjq65nqmh
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB5RFRiTkRvelV2M2JaWWt1
+            bEhrMm1lYWF4eWNZSkNHWWtQR3JLamQzQlYwCnVwbTZ6RjNRK3BiT1pjaVZTaUsv
+            VjVIMENoNGIvYis4YThLZlJyZkFQTXcKLS0tIGdITHY1clZSWTVYcXM3M1BISjNx
+            QnBBdWtRR3hJMm0rcHl6U3QwL3lHdVkKsNuk1jVd0kmfOKLRfiKb/7cePst0LecV
+            zfw5NhEqoM6Yu8uMPJxs4ZUE091SWaLXwy7pr1CtcgHzYpoMfw3SIg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-03-25T19:02:15Z"
+    mac: ENC[AES256_GCM,data:olysT8WnJlm+dN5DMIl6hG27lEQBBmR+LNZJJOUXH5A+9X9CfHkJJTGGqYz8eFEwmf5ZJjncQ94e5EVCTVun93ZRumZmyzuhDq9CHQcKYlyC4uWVFcyXIk8LPRbD3wRr4t4xE+6xGC5I6ormN5logWk7JGHQk5lbcqppunKXxqo=,iv:MOxJXXVO46MV3LeyEgsN+jLk0utv2KCKjmXeHAniyNY=,tag:loEHB2NWtuM/LfBN12M10A==,type:str]
+    pgp: []
+    encrypted_regex: (^whitelist|ops|motd)$
+    version: 3.9.4
