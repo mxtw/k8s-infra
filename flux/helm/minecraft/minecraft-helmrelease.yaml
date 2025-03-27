@@ -18,6 +18,8 @@ spec:
     interval: 1m0s
     targetNamespace: minecraft
     values:
+        image:
+            tag: java8
         minecraftServer:
             eula: "TRUE"
             type: FTBA
