@@ -39,6 +39,8 @@ spec:
                 memory: 4Gi
         readinessProbe:
             failureThreshold: 40
+        livenessProbe:
+            failureThreshold: 40
 sops:
     kms: []
     gcp_kms: []
