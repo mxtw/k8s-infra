@@ -28,6 +28,7 @@ spec:
             whitelist: ENC[AES256_GCM,data:R4S1dssX+7d/RVcrsykE6stq,iv:ejcfxOYfvDBKXd2AYh3Vtqnb0CqOw1pQyPqy6acg/Uo=,tag:0Jagc1fGxufP4kQrM2ZmLg==,type:str]
             ops: ENC[AES256_GCM,data:4wFalwKpC1Jb3YcwKpp4t4lz,iv:L9d+Ymg4bS+Ns8U5teGrQx8uGw12zaYSJpFAedGhr0Q=,tag:wVTB8h2EJGzT9IdqVpyh8g==,type:str]
             motd: ENC[AES256_GCM,data:VlZRJwUUpWM07X2K,iv:c6eAkHzgvw1Y/ILISK70WtHOnQkMcTGjox+kGTJSdjU=,tag:J+GnberMPruqUKAXQvOwXQ==,type:str]
+            memory: 3072M
         persistence:
             dataDir:
                 enabled: true
@@ -36,6 +37,8 @@ spec:
             limits:
                 cpu: 2
                 memory: 4Gi
+        readinessProbe:
+            failureThreshold: 40
 sops:
     kms: []
     gcp_kms: []
